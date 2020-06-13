@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title text-align="center">Recipe App - Recipes</title>
+</head>
+<body>
+<div class="container center">
+    <h1 align="center">My Recipes</h1>
+    <table class="table table-light table-bordered table-hover center-align">
+        <thead align="center" class="thead-dark center">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Difficulty</th>
+            <th>Prep time</th>
+            <th>Cook time</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="recipe : ${recipes}">
+            <td align="center" th:text="${recipe.getId()}"></td>
+            <td th:text="${recipe.getDescription()}"></td>
+            <td align="center" th:text="${recipe.getDifficulty()}"></td>
+            <td align="center" th:text="${recipe.getPrepTime()}"></td>
+            <td align="center" th:text="${recipe.getCookTime()}"></td>
+            <td align="center"><button type="button" class="btn btn-info">View Details</button><button type="button" class="btn btn-danger">Delete</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
