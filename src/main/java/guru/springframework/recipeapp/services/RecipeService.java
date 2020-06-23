@@ -10,6 +10,8 @@ public interface RecipeService {
 
     List<Recipe> findAll();
 
+    Recipe findById(Long id);
+
     Optional<Recipe> findByDescription(String description);
 
     void save(Recipe recipe);

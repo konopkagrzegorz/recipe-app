@@ -3,35 +3,64 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
     <title text-align="center">Recipe App - Recipes</title>
 </head>
 <body>
-<div class="container center">
-    <h1 align="center">My Recipes</h1>
-    <table class="table table-light table-bordered table-hover center-align">
-        <thead align="center" class="thead-dark center">
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Difficulty</th>
-            <th>Prep time</th>
-            <th>Cook time</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="recipe : ${recipes}">
-            <td align="center" th:text="${recipe.getId()}"></td>
-            <td th:text="${recipe.getDescription()}"></td>
-            <td align="center" th:text="${recipe.getDifficulty()}"></td>
-            <td align="center" th:text="${recipe.getPrepTime()}"></td>
-            <td align="center" th:text="${recipe.getCookTime()}"></td>
-            <td align="center"><button type="button" class="btn btn-info">View Details</button><button type="button" class="btn btn-danger">Delete</button></td>
-        </tr>
-        </tbody>
-    </table>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title text-center"><b>My Recipes!</b></h1>
+                </div>
+                <a href="/recipes/add-new" type="button" class="btn btn-primary btn-sm btn-block" style="margin-top: 10px"><b>Add Recipe</b></a>
+                <div class="panel-body">
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(recipes)}">
+                        <table class="table table-hover ">
+                            <thead align="center" class="thead-dark center">
+                                <tr class="text-center">
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Difficulty</th>
+                                    <th class="text-center">Prep time</th>
+                                    <th class="text-center">Cook time</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                             </thead>
+                            <tbody>
+                                <tr th:each="recipe : ${recipes}">
+                                    <td align="center" th:text="${recipe.getId()}"></td>
+                                    <td th:text="${recipe.getDescription()}"></td>
+                                    <td align="center" th:text="${recipe.getDifficulty()}"></td>
+                                    <td align="center" th:text="${recipe.getPrepTime()}"></td>
+                                    <td align="center" th:text="${recipe.getCookTime()}"></td>
+                                    <td align="center">
+                                        <a th:href="@{/recipes/update/{id}(id=${recipe.id})}"
+                                           class="btn btn-success">Update</a>
+                                        <a th:href="@{/recipes/show/{id}(id=${recipe.id})}"
+                                           class="btn btn-info">View Details</a>
+                                        <a th:href="@{/recipes/delete/{id}(id=${recipe.id})}"
+                                           class="btn btn-danger">Delete</a>
+                                </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

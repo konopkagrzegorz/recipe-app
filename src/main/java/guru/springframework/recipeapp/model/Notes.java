@@ -31,7 +31,7 @@ public class Notes {
     }
 
     public String getNote() {
-        return note;
+        return this.note;
     }
 
     public void setNote(String note) {
