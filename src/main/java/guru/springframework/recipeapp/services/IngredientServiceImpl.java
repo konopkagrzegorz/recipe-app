@@ -59,22 +59,5 @@ public class IngredientServiceImpl implements IngredientService {
             }
             ingredientRepository.save(ingredient);
         }
-
-//        Optional<Recipe> recipeOptional = recipeRepository.findById(ingredient.getRecipeId());
-//        if (!recipeOptional.isPresent()) {
-//            throw new RuntimeException("Recipe doesn't exist");
-//        } else {
-//            Recipe recipe = recipeOptional.get();
-//            Optional<Ingredient> ingredientOptional = recipe.getIngredients().stream()
-//                    .filter(ingredient1 -> ingredient1.getId().equals(ingredient.getId())).findFirst();
-//            if (!ingredientOptional.isPresent()) {
-//                throw new RuntimeException("Id not found");
-//            } else {
-//                recipe.addIngredient(ingredientOptional.get());
-//            }
-//            recipeRepository.save(recipe);
-//        }
-//        return ingredient;
-//    }
     }
 }
