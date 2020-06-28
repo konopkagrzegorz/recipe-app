@@ -40,6 +40,7 @@ public class Recipe {
     @Column(name = "difficulty")
     private Difficulty difficulty;
 
+    @Lob
     @Column(name = "image")
     private Byte[] image;
 
@@ -145,13 +146,13 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    //    public Byte[] getImage() {
-//        return image;
-//    }
+    public Byte[] getImage() {
+        return image;
+    }
 
-//    public void setImage(Byte[] image) {
-//        this.image = image;
-//    }
+    public void setImage(Byte[] image) {
+        this.image = image;
+    }
 
     public Notes getNotes() {
         return notes;

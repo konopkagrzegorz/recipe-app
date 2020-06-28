@@ -24,6 +24,7 @@
                 <div class="panel-heading">
                     <h1 class="panel-title">Ingredients</h1>
                 </div>
+                <a th:href="'/recipes/' + ${recipe.id} + '/ingredient/add-new'" type="button" class="btn btn-primary btn-sm btn-block" style="margin-top: 10px"><b>Add Ingredient</b></a>
                 <div class="panel-body">
                     <div class="table-responsive" th:if="${not #lists.isEmpty(recipe.getIngredients())}">
                         <table class="table table-hover ">
@@ -39,10 +40,10 @@
                                     <td th:text="${ingredient.id}"></td>
                                     <td th:text="${ingredient.amount} + ' ' + ${ingredient.uom.getUom()} + ' ' + ${ingredient.description}"></td>
                                     <td align="center">
-                                        <a th:href="@{'/recipes/show/' + ${recipe.id} + '/ingredient/' + ${ingredient.id}
+                                        <a th:href="@{'/recipes/show/' + ${ingredient.recipeId} + '/ingredient/' + ${ingredient.id}
                                                         + '/update'}"
                                            class="btn btn-success">Edit</a>
-                                        <a th:href="@{'/recipes/show/' + ${recipe.id} + '/delete/' + ${ingredient.id}}"
+                                        <a th:href="@{'/recipes/show/' + ${ingredient.recipeId} + '/delete/' + ${ingredient.id}}"
                                            class="btn btn-danger">Delete</a>
                                 </tr>
                         </table>

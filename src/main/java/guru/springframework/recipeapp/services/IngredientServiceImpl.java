@@ -44,8 +44,7 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public Ingredient save(Ingredient ingredient) {
-        Ingredient ingredientFound = new Ingredient();
+    public void save(Ingredient ingredient) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(ingredient.getRecipeId());
         if (!recipeOptional.isPresent()) {
             throw new RuntimeException("Recipe doesn't exist");
@@ -54,13 +53,28 @@ public class IngredientServiceImpl implements IngredientService {
             Optional<Ingredient> ingredientOptional = recipe.getIngredients().stream()
                     .filter(ingredient1 -> ingredient1.getId().equals(ingredient.getId())).findFirst();
             if (ingredientOptional.isPresent()) {
-                ingredientFound = ingredientOptional.get();
+                ingredient.setRecipe(recipe);
             } else {
-                recipe.addIngredient(ingredientOptional.get());
+                recipe.addIngredient(ingredient);
             }
-            recipeRepository.save(recipe);
-            ingredientRepository.save(ingredientFound);
+            ingredientRepository.save(ingredient);
         }
-        return ingredientFound;
+
+//        Optional<Recipe> recipeOptional = recipeRepository.findById(ingredient.getRecipeId());
+//        if (!recipeOptional.isPresent()) {
+//            throw new RuntimeException("Recipe doesn't exist");
+//        } else {
+//            Recipe recipe = recipeOptional.get();
+//            Optional<Ingredient> ingredientOptional = recipe.getIngredients().stream()
+//                    .filter(ingredient1 -> ingredient1.getId().equals(ingredient.getId())).findFirst();
+//            if (!ingredientOptional.isPresent()) {
+//                throw new RuntimeException("Id not found");
+//            } else {
+//                recipe.addIngredient(ingredientOptional.get());
+//            }
+//            recipeRepository.save(recipe);
+//        }
+//        return ingredient;
+//    }
     }
 }

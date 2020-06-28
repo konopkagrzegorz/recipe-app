@@ -68,4 +68,8 @@ public class Ingredient {
     public Long getRecipeId() {
         return recipe.getId();
     }
+
+    public void setRecipeId(Long recipeId) {
+        this.recipe.setId(recipeId);
+    }
 }

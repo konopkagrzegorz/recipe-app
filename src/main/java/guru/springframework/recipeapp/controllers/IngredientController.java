@@ -1,6 +1,8 @@
 package guru.springframework.recipeapp.controllers;
 
 import guru.springframework.recipeapp.model.Ingredient;
+import guru.springframework.recipeapp.model.Recipe;
+import guru.springframework.recipeapp.model.UnitOfMeasure;
 import guru.springframework.recipeapp.services.IngredientService;
 import guru.springframework.recipeapp.services.RecipeService;
 import guru.springframework.recipeapp.services.UnitOfMeasureService;
@@ -25,9 +27,9 @@ public class IngredientController {
         this.unitOfMeasureService = unitOfMeasureService;
     }
 
-    @GetMapping("/recipes/show/{id}/ingredients")
-    public String showIngredients(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("recipe", recipeService.findById(id));
+    @GetMapping("/recipes/show/{recipeId}/ingredients")
+    public String showIngredients(@PathVariable("recipeId") Long recipeId, Model model) {
+        model.addAttribute("recipe", recipeService.findById(recipeId));
         return "recipe/ingredient/list";
     }
 
@@ -50,9 +52,23 @@ public class IngredientController {
         return "recipe/ingredient/ingredient-form";
     }
 
-    @PostMapping("/recipes/ingredient/save")
-    public String saveOrUpdate(@ModelAttribute("ingredient") Ingredient ingredient) {
+    @GetMapping("/recipes/{recipeId}/ingredient/add-new")
+    public String addIngredient(@PathVariable ("recipeId") Long recipeId, Model model) {
+        Ingredient ingredient = new Ingredient();
+        Recipe recipe = recipeService.findById(recipeId);
+        ingredient.setRecipe(recipe);
+        ingredient.setUom(new UnitOfMeasure());
+        model.addAttribute("ingredient", ingredient);
+        model.addAttribute("uomList", unitOfMeasureService.findAll());
+        return "recipe/ingredient/ingredient-form";
+    }
+
+    @PostMapping("/recipes/show/{recipeIdentyficator}/ingredient")
+    public String saveOrUpdate(@PathVariable ("recipeIdentyficator") Long id, @ModelAttribute ("ingredient") Ingredient ingredient) {
+        //Ingredient finder = ingredientService.findByRecipeIdAndIngredientId(id,ingredient.getId());
+        //ingredient.setRecipe(finder.getRecipe());
+        //finder.setDescription(ingredient.getDescription());
         ingredientService.save(ingredient);
-        return "redirect:/recipes";
+        return "redirect:/recipes/show/" + ingredient.getRecipeId();
     }
 }
