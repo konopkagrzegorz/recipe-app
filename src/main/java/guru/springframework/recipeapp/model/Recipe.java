@@ -45,7 +45,6 @@ public class Recipe {
 
     @Column(name = "url")
     @URL(message = "Must be a correct URL link")
-    @NotBlank(message = "Cannot be blank")
     private String url;
 
     @Lob
