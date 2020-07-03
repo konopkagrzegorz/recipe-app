@@ -1,7 +1,10 @@
 package guru.springframework.recipeapp.model;
 
+import org.hibernate.validator.constraints.URL;
+
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.validation.constraints.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,21 +18,34 @@ public class Recipe {
     private Long id;
 
     @Column(name = "description")
+    @NotBlank(message = "This field cannot be empty")
+    @Size(min = 3, max = 255, message = "Description must be between {min} and {max} characters long")
     private String description;
 
     @Column(name = "prepTime")
+    @NotNull(message = "Cannot be null value")
+    @Min(value = 0,message =  "{value} is minimum value")
+    @Max(value = 999, message = "{value} is maximum value")
     private Integer prepTime;
 
     @Column(name = "cookTime")
+    @NotNull(message = "Cannot be null value")
+    @Min(value = 0,message =  "{value} is minimum value")
+    @Max(value = 999, message = "{value} is maximum value")
     private Integer cookTime;
 
     @Column(name = "servings")
+    @NotNull(message = "Cannot be null value")
+    @Min(value = 1,message =  "{value} is minimum value")
+    @Max(value = 99, message = "{value} is maximum value")
     private Integer servings;
 
     @Column(name = "source")
     private String source;
 
     @Column(name = "url")
+    @URL(message = "Must be a correct URL link")
+    @NotBlank(message = "Cannot be blank")
     private String url;
 
     @Lob

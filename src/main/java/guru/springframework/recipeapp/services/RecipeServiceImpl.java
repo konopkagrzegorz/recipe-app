@@ -1,5 +1,6 @@
 package guru.springframework.recipeapp.services;
 
+import guru.springframework.recipeapp.exceptions.NotFoundException;
 import guru.springframework.recipeapp.model.Recipe;
 import guru.springframework.recipeapp.model.UnitOfMeasure;
 import guru.springframework.recipeapp.repository.RecipeRepository;
@@ -34,7 +35,7 @@ public class RecipeServiceImpl implements RecipeService {
 
         Optional<Recipe> result = recipeRepository.findById(id);
         if (!result.isPresent()) {
-            throw new RuntimeException("Recipe with id: " + id + " not found!");
+            throw new NotFoundException("Recipe with id " + id + " not found!");
         }
         return result.get();
     }

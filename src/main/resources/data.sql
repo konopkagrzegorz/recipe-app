@@ -85,5 +85,3 @@ INSERT INTO ingredient (description, amount, recipe_id, uom_id) VALUES ('lime, c
 
 INSERT INTO recipe_category (recipe_id, category_id) VALUES (2,1);
 INSERT INTO recipe_category (recipe_id, category_id) VALUES (2,3);
-
-
