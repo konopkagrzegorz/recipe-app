@@ -49,13 +49,14 @@ public class RecipeController {
     public String addNewRecipe(Model model) {
         Recipe recipe = new Recipe();
         model.addAttribute("recipe", recipe);
-        model.addAttribute("category", categoryService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
         return "recipe/form";
     }
 
     @PostMapping("/save")
-    public String saveOrUpdate(@Valid @ModelAttribute ("recipe") Recipe recipe, BindingResult result) {
+    public String saveOrUpdate(@Valid @ModelAttribute ("recipe") Recipe recipe, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("categories",categoryService.findAll());
             return "recipe/form";
         }
         recipeService.save(recipe);
