@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -47,11 +48,11 @@
                                     <td align="center" th:text="${recipe.getPrepTime()}"></td>
                                     <td align="center" th:text="${recipe.getCookTime()}"></td>
                                     <td align="center">
-                                        <a th:href="@{/recipes/update/{id}(id=${recipe.id})}"
+                                        <a sec:authorize="isAuthenticated()" th:href="@{/recipes/update/{id}(id=${recipe.id})}"
                                            class="btn btn-success">Update</a>
                                         <a th:href="@{/recipes/show/{id}(id=${recipe.id})}"
                                            class="btn btn-info">View Details</a>
-                                        <a th:href="@{/recipes/delete/{id}(id=${recipe.id})}"
+                                        <a sec:authorize="isAuthenticated()" th:href="@{/recipes/delete/{id}(id=${recipe.id})}"
                                            class="btn btn-danger">Delete</a>
                                 </tr>
                         </tbody>

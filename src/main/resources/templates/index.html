@@ -15,25 +15,25 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 
-    <title>Recipe App Home</title>
+    <title text-align="center">Recipe Center</title>
 </head>
 <body>
-<div class="container center">
-    <h1 class="center-align">My Recipes</h1>
-<table class="table table-dark table-bordered table-stripped">
-    <thead class="thead-light center">
-        <tr>
-            <th>ID</th>
-            <th>Unit</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="uom : ${uoms}">
-            <td th:text="${uom.getId()}"></td>
-            <td th:text="${uom.getUom()}"></td>
-        </tr>
-    </tbody>
-</table>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title text-center"><b>Recipe Center Panel</b></h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                    <a th:href="@{/recipes}" class="btn btn-danger col-md-6 col-md-offset-3">View Recipes</a>
+                    <a th:href="@{/login}" class="btn btn-danger col-md-6 col-md-offset-3" style="margin-top: 10px">Admin Panel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
