@@ -25,21 +25,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails userDetails = User.withDefaultPasswordEncoder()
+        UserDetails admin = User.withDefaultPasswordEncoder()
                 .username("admin")
                 .password("root")
                 .roles("ADMIN")
                 .build();
-        return new InMemoryUserDetailsManager(userDetails);
+
+        UserDetails user = User.withDefaultPasswordEncoder()
+                .username("user")
+                .password("user")
+                .roles("USER")
+                .build();
+
+        return new InMemoryUserDetailsManager(admin, user);
     }
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/recipes/show/**").permitAll()
+                .antMatchers("/recipes/add-new").hasRole("USER")
                 .antMatchers("/recipes/update/**").hasRole("ADMIN")
                 .antMatchers("/recipes/delete/**").hasRole("ADMIN")
                 .and()
-                .formLogin().permitAll();
+                .formLogin().permitAll()
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/recipes",true)
+                .and()
+                .logout()
+                .logoutSuccessUrl("/recipes");
     }
 }
