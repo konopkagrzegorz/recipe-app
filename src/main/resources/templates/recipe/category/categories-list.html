@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+    <title text-align="center">Recipe App - Categories</title>
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <a sec:authorize="isAuthenticated()" class="btn btn-info" style="margin-bottom: 10px" th:href="@{/logout}">Logout</a>
+            <a sec:authorize="isAnonymous()" class="btn btn-success" style="margin-bottom: 10px" th:href="@{/login}">Login</a>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title text-center"><b>Categories</b></h1>
+                </div>
+                <a href="/categories/add-new" type="button" class="btn btn-primary btn-sm btn-block" style="margin-top: 10px"><b>Add category</b></a>
+                <div class="panel-body">
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(categories)}">
+                        <table class="table table-hover ">
+                            <thead align="center" class="thead-dark center">
+                                <tr class="text-center">
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                             </thead>
+                            <tbody>
+                                <tr th:each="category : ${categories}">
+                                    <td align="center" th:text="${category.getId()}"></td>
+                                    <td th:text="${category.getCategoryName()}"></td>
+                                    <td align="center">
+                                        <a sec:authorize="isAuthenticated()" th:href="@{/categories/delete/{categoryId}
+                                        (categoryId=${category.id})}"
+                                           class="btn btn-danger">Delete</a>
+                                </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
