@@ -36,7 +36,7 @@
                                 <tr class="text-center">
                                     <th class="text-center">#</th>
                                     <th class="text-center">Name</th>
-                                    <th class="text-center">Actions</th>
+                                    <th sec:authorize="hasRole('ADMIN')" class="text-center">Actions</th>
                                 </tr>
                              </thead>
                             <tbody>
@@ -44,7 +44,7 @@
                                     <td align="center" th:text="${category.getId()}"></td>
                                     <td th:text="${category.getCategoryName()}"></td>
                                     <td align="center">
-                                        <a sec:authorize="isAuthenticated()" th:href="@{/categories/delete/{categoryId}
+                                        <a sec:authorize="hasRole('ADMIN')" th:href="@{/categories/delete/{categoryId}
                                         (categoryId=${category.id})}"
                                            class="btn btn-danger">Delete</a>
                                 </tr>

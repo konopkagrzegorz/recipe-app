@@ -22,7 +22,9 @@
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <a sec:authorize="isAuthenticated()" class="btn btn-info" style="margin-bottom: 10px" th:href="@{/logout}">Logout</a>
+            <form method="post">
+                <a sec:authorize="isAuthenticated()" class="btn btn-info" style="margin-bottom: 10px" th:href="@{/logout}">Logout</a>
+            </form>
             <a sec:authorize="isAnonymous()" class="btn btn-success" style="margin-bottom: 10px" th:href="@{/login}">Login</a>
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -50,11 +52,11 @@
                                     <td align="center" th:text="${recipe.getPrepTime()}"></td>
                                     <td align="center" th:text="${recipe.getCookTime()}"></td>
                                     <td align="center">
-                                        <a sec:authorize="isAuthenticated()" th:href="@{/recipes/update/{id}(id=${recipe.id})}"
+                                        <a sec:authorize="hasRole('ADMIN')" th:href="@{/recipes/update/{id}(id=${recipe.id})}"
                                            class="btn btn-success">Update</a>
                                         <a th:href="@{/recipes/show/{id}(id=${recipe.id})}"
                                            class="btn btn-info">View Details</a>
-                                        <a sec:authorize="isAuthenticated()" th:href="@{/recipes/delete/{id}(id=${recipe.id})}"
+                                        <a sec:authorize="hasRole('ADMIN')" th:href="@{/recipes/delete/{id}(id=${recipe.id})}"
                                            class="btn btn-danger">Delete</a>
                                 </tr>
                         </tbody>

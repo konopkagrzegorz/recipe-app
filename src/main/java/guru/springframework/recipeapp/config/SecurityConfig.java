@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 @Configuration
@@ -47,13 +48,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/recipes/add-new").hasAnyRole("USER, ADMIN")
                 .antMatchers("/recipes/update/**").hasRole("ADMIN")
                 .antMatchers("/recipes/delete/**").hasRole("ADMIN")
+                .antMatchers("/categories").permitAll()
+                .antMatchers("/categories/add-new").hasRole("ADMIN")
+                .antMatchers("/categories/delete/**").hasRole("ADMIN")
                 .and()
-                .formLogin().permitAll()
+                .formLogin()
+                .permitAll()
+                .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/recipes",true)
+                .defaultSuccessUrl("/",true)
+                .failureUrl("/login?error=true")
                 .and()
-                .logout()
-                .logoutSuccessUrl("/recipes");
-
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .and()
+                .exceptionHandling().accessDeniedPage("/access-denied");
     }
 }

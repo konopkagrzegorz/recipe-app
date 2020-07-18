@@ -2,14 +2,16 @@ package guru.springframework.recipeapp.controllers;
 
 import guru.springframework.recipeapp.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
-
 public class ExceptionController {
 
     @ExceptionHandler(NotFoundException.class)

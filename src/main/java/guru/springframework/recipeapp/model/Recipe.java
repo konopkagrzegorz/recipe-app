@@ -1,13 +1,8 @@
 package guru.springframework.recipeapp.model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.URL;
-
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
