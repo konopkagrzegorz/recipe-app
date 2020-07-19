@@ -44,6 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/recipes/show/**").permitAll()
                 .antMatchers("/recipes/add-new").hasAnyRole("USER, ADMIN")
                 .antMatchers("/recipes/update/**").hasRole("ADMIN")
@@ -63,5 +65,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout")
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied");
+
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 }
