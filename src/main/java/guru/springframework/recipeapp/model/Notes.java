@@ -1,6 +1,7 @@
 package guru.springframework.recipeapp.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "notes")

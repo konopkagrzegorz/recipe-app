@@ -46,6 +46,8 @@ public class Recipe {
 
     @Lob
     @Column(name = "directions")
+    @NotBlank(message = "Cannot be blank")
+    @Size(min = 3,message = "{value} is a minimum value")
     private String directions;
 
     @Enumerated(EnumType.STRING)
@@ -68,6 +70,7 @@ public class Recipe {
             name = "recipe_category",
     joinColumns = @JoinColumn (name = "recipe_id"),
     inverseJoinColumns = @JoinColumn (name = "category_id"))
+    @NotEmpty(message = "Min. 1 category is required")
     private Set<Category> categories;
 
     public Long getId() {
