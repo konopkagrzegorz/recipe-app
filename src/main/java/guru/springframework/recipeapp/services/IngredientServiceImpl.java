@@ -3,7 +3,6 @@ package guru.springframework.recipeapp.services;
 import guru.springframework.recipeapp.exceptions.NotFoundException;
 import guru.springframework.recipeapp.model.Ingredient;
 import guru.springframework.recipeapp.model.Recipe;
-import guru.springframework.recipeapp.model.UnitOfMeasure;
 import guru.springframework.recipeapp.repository.IngredientRepository;
 import guru.springframework.recipeapp.repository.RecipeRepository;
 import guru.springframework.recipeapp.repository.UnitOfMeasureRepository;

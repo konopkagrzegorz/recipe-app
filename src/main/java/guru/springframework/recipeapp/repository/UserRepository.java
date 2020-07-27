@@ -1,12 +1,12 @@
 package guru.springframework.recipeapp.repository;
 
-import guru.springframework.recipeapp.model.Ingredient;
+import guru.springframework.recipeapp.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
-public interface IngredientRepository extends CrudRepository<Ingredient, Long> {
+public interface UserRepository extends CrudRepository<User,Long> {
+
+    User findByUsername(String username);
 
 }
