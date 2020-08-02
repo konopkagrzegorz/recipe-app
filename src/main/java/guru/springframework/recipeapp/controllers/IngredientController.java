@@ -33,12 +33,6 @@ public class IngredientController {
         return "recipe/ingredient/ingredient-list";
     }
 
-//    @GetMapping("/recipes/show/{recipeId}/ingredient/{id}")
-//    public String showFormForEdit(@PathVariable ("recipeId") Long recipeId, @PathVariable ("id") Long id, Model model) {
-//        model.addAttribute("ingredient",ingredientService.findByRecipeIdAndIngredientId(recipeId,id));
-//        return "recipe/ingredient/ingredient-list";
-//    }
-
     @GetMapping("/recipes/show/{recipeId}/delete/{id}")
     public String deleteIngredient(@PathVariable ("recipeId") Long recipeId, @PathVariable ("id") Long id) {
         ingredientService.deleteById(id);
@@ -63,11 +57,8 @@ public class IngredientController {
         return "recipe/ingredient/ingredient-form";
     }
 
-    @PostMapping("/recipes/show/{recipeIdentyficator}/ingredient")
-    public String saveOrUpdate(@PathVariable ("recipeIdentyficator") Long id, @ModelAttribute ("ingredient") Ingredient ingredient) {
-        //Ingredient finder = ingredientService.findByRecipeIdAndIngredientId(id,ingredient.getId());
-        //ingredient.setRecipe(finder.getRecipe());
-        //finder.setDescription(ingredient.getDescription());
+    @PostMapping("/recipes/show/{recipeId}/ingredient")
+    public String saveOrUpdate(@PathVariable ("recipeId") Long id, @ModelAttribute ("ingredient") Ingredient ingredient) {
         ingredientService.save(ingredient);
         return "redirect:/recipes/show/" + ingredient.getRecipeId();
     }
