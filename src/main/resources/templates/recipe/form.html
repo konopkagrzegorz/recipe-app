@@ -31,7 +31,6 @@
                 <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
                     <p>Please Correct Errors Below</p>
                 </div>
-
                 <input type="hidden" th:field="*{id}"/>
                 <div class="pannel-group">
                     <div class="panel panel-primary">
@@ -99,7 +98,7 @@
                                     <label>Difficulty:</label>
                                     <select class="form-control" th:field="*{difficulty}">
                                         <option th:each="difficulty :
-                                        ${T(guru.springframework.recipeapp.model.Difficulty).values()}"
+                                        ${T(com.springframework.recipeapp.model.Difficulty).values()}"
                                         th:value="${difficulty}" th:text="${difficulty.displayValue}"></option>
                                     </select>
                                 </div>
