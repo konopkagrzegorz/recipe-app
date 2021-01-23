@@ -6,7 +6,7 @@ import javax.validation.constraints.*;
 import java.util.Set;
 
 @Entity
-@Table (name = "recipes")
+@Table (name = "recipes", schema = "public")
 public class Recipe {
 
     @Id

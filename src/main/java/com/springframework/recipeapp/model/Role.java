@@ -3,7 +3,7 @@ package com.springframework.recipeapp.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "role")
+@Table(name = "role", schema = "public")
 public class Role {
 
     @Id

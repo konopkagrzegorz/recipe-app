@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table(name = "category")
+@Table(name = "category", schema = "public")
 public class Category {
 
     @Id

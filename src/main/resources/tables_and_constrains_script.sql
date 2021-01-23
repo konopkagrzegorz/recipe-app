@@ -37,7 +37,7 @@ CREATE TABLE `user_role` (
 INSERT INTO `role` (`role`) VALUES ('ROLE_USER');
 INSERT INTO `role` (`role`) VALUES ('ROLE_ADMIN');
 
-INSERT INTO `user` (`username`, `password`) VALUES ('admin', '$2y$12$GHVKORlotJJAJihrP7nsbO3Z1VscGEkYDjq.GcLB7rGa1086iJSVe');
+INSERT INTO `user` (`username`, `password`) VALUES ('admin', '$2a$12$S0VqIDHC80zZOMBcdYNExOhpGk3frK0MKKsfjeAffs8gDkAnfajBa');
 INSERT INTO `user` (`username`, `password`) VALUES ('user', '$2a$12$To4.4pJNo9Y4nm6nZsWRketmsTUPjt6MbFraPNb6b84wUIzbKRBHC');
 
 INSERT INTO `user_role` (`user_id`, `role_id`) VALUES (1, 2);

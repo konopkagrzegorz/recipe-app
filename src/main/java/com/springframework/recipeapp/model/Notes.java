@@ -3,7 +3,7 @@ package com.springframework.recipeapp.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "notes")
+@Table(name = "notes", schema = "public")
 public class Notes {
 
     @Id

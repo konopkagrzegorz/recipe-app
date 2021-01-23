@@ -3,7 +3,7 @@ package com.springframework.recipeapp.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "unit_of_measure")
+@Table(name = "unit_of_measure", schema = "public")
 public class UnitOfMeasure {
 
     @Id
