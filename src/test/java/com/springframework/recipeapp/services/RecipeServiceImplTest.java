@@ -23,11 +23,11 @@ class RecipeServiceImplTest {
         recipeServiceImpl = new RecipeServiceImpl(recipeRepository);
     }
 
-    @Test
-    public void testMockMVC() throws Exception {
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeServiceImpl).build();
-        //mockMvc.perform(get("/")).andExpect(status().isOk()).andExpect(view().name("index"));
-    }
+//    @Test
+//    public void testMockMVC() throws Exception {
+//        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeServiceImpl).build();
+//        //mockMvc.perform(get("/")).andExpect(status().isOk()).andExpect(view().name("index"));
+//    }
     @Test
     void findAll() {
         Recipe recipe = new Recipe();
